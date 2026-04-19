@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions – Agnis Labs</title>
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-alt: #0b1020;
+      --card: #101629;
+      --accent: #35e0ff;
+      --accent-soft: rgba(53, 224, 255, 0.12);
+      --text: #f5f7ff;
+      --muted: #b0b7d6;
+      --border: #242b3f;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-soft: 0 20px 50px rgba(0,0,0,0.6);
+      --shadow-subtle: 0 12px 32px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151a33 0, #050814 55%);
+      color: var(--text);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(22px);
+      background: linear-gradient(to bottom, rgba(5,8,20,0.96), rgba(5,8,20,0.84));
+      border-bottom: 1px solid rgba(53,224,255,0.18);
+    }
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 30px; height: 30px; border-radius: 12px; background: radial-gradient(circle at 30% 20%, #ffffff 0, #35e0ff 14%, #1a5fff 38%, #050814 100%); box-shadow: 0 0 18px rgba(53,224,255,0.7); }
+    .logo-text-main { font-weight: 600; letter-spacing: 0.09em; font-size: 0.9rem; text-transform: uppercase; }
+    .logo-text-sub { font-size: 0.8rem; color: var(--muted); }
+    .nav-links { display: flex; gap: 18px; font-size: 0.9rem; color: var(--muted); }
+    .nav-links a { position: relative; padding-bottom: 3px; text-decoration: none; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), #7a5cff); border-radius: 999px; transition: width 0.2s ease-out; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .btn { border-radius: 999px; padding: 9px 18px; font-size: 0.88rem; border: 1px solid transparent; cursor: pointer; transition: all 0.16s ease-out; white-space: nowrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #7a5cff); color: #050814; font-weight: 600; box-shadow: 0 14px 30px rgba(53,224,255,0.35); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 20px 46px rgba(53,224,255,0.45); }
+    .btn-ghost { background: rgba(11,16,32,0.9); border-color: rgba(130,140,185,0.7); color: var(--muted); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--text); transform: translateY(-1px); box-shadow: 0 14px 30px rgba(0,0,0,0.55); }
+    main { max-width: 1120px; margin: 0 auto; padding: 40px 20px 80px; }
+    section { margin-top: 72px; }
+    .section-label { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 20px; }
+    .section-header h2 { font-size: 1.35rem; }
+    .section-header p { font-size: 1rem; color: var(--muted); max-width: 560px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.1fr); gap: 36px; align-items: center; padding: 36px 26px 36px; border-radius: 26px; background: radial-gradient(circle at top left, rgba(53,224,255,0.16) 0, rgba(11,16,32,0.96) 40%, #050814 100%); border: 1px solid rgba(53,224,255,0.2); box-shadow: var(--shadow-soft); margin-top: 24px; }
+    .hero h1 { font-size: clamp(2rem, 3.2vw, 2.6rem); line-height: 1.16; margin-bottom: 10px; }
+    .hero h1 span { background: linear-gradient(120deg, var(--accent), #7a5cff); -webkit-background-clip: text; color: transparent; }
+    .hero-subtitle { font-size: 1.02rem; color: var(--muted); max-width: 32rem; margin-bottom: 20px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+    .hero-meta { font-size: 0.88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 16px; }
+    .hero-visual { position: relative; min-height: 240px; border-radius: 22px; overflow: hidden; background: radial-gradient(circle at 20% 0, rgba(53,224,255,0.35), transparent 60%), radial-gradient(circle at 90% 100%, rgba(122,92,255,0.5), transparent 58%), radial-gradient(circle at 0 100%, rgba(255,75,129,0.45), transparent 60%); box-shadow: var(--shadow-subtle); }
+    .hero-visual-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 22px; }
+    .hero-visual-card { width: 100%; max-width: 320px; border-radius: 20px; background: rgba(5,8,20,0.96); border: 1px solid rgba(53,224,255,0.22); padding: 16px 18px; box-shadow: var(--shadow-subtle); font-size: 0.9rem; color: var(--muted); }
+    .hero-visual-card h3 { font-size: 0.96rem; margin-bottom: 6px; }
+    .hero-visual-card p { font-size: 0.9rem; }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .card { border-radius: var(--radius-md); background: linear-gradient(145deg, rgba(11,16,32,0.98), rgba(7,11,25,0.98)); border: 1px solid var(--border); padding: 20px 20px 18px; box-shadow: var(--shadow-subtle); font-size: 0.98rem; }
+    .card h3 { font-size: 1rem; margin-bottom: 8px; }
+    .card p { font-size: 0.95rem; color: var(--muted); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .pill { font-size: 0.86rem; padding: 6px 11px; border-radius: 999px; border: 1px solid rgba(53,224,255,0.26); background: rgba(5,8,20,0.8); color: var(--muted); }
+    .contact { margin-top: 64px; border-radius: var(--radius-lg); background: radial-gradient(circle at top, rgba(53,224,255,0.16), rgba(5,8,20,0.98)); border: 1px solid rgba(53,224,255,0.2); padding: 28px 24px 24px; box-shadow: var(--shadow-soft); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 26px; }
+    .contact p { font-size: 0.98rem; color: var(--muted); }
+    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; font-size: 0.9rem; }
+    .field-full { grid-column: 1 / -1; }
+    label { display: block; margin-bottom: 3px; }
+    input, textarea, select { width: 100%; padding: 9px 10px; border-radius: 10px; border: 1px solid rgba(83,93,140,0.9); background: rgba(5,8,20,0.96); color: var(--text); font-size: 0.9rem; outline: none; }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(53,224,255,0.45); }
+    textarea { min-height: 120px; resize: vertical; }
+    .submit-row { margin-top: 6px; display: flex; justify-content: flex-end; }
+    footer { max-width: 1120px; margin: 26px auto 26px; padding: 0 20px 6px; font-size: 0.8rem; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(36,43,63,0.98); padding-top: 12px; }
+    .fade-toggle { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .fade-toggle.open { max-height: 600px; }
+    @media (max-width: 880px) {
+      .hero { grid-template-columns: minmax(0, 1fr); padding: 28px 20px 26px; }
+      .hero-visual { order: -1; }
+      .cards-grid { grid-template-columns: minmax(0, 1fr); }
+      .contact { grid-template-columns: minmax(0, 1fr); padding: 24px 18px 20px; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      main { padding: 28px 16px 52px; }
+      section { margin-top: 52px; }
+      .contact-form { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <div class="logo-mark"></div>
+        <div>
+          <div class="logo-text-main">AGNIS LABS</div>
+          <div class="logo-text-sub">Intelligent Systems · Est. 2025</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/solutions.html">Solutions</a>
+        <a href="/research.html">Research</a>
+        <a href="/about.html">About</a>
+        <a href="/index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="/index.html#contact" class="btn btn-ghost">Contact</a>
+        <a href="/solutions.html" class="btn btn-primary">Explore solutions</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="section-label">Solutions</p>
+        <h1>Workflow & compliance intelligence for regulated teams</h1>
+        <p class="hero-subtitle">
+          Explore the core platforms and services Agnis Labs offers today. Each engagement can start small
+          and expand as your needs grow.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Platforms</div>
+      <div class="section-header">
+        <h2>Core solution areas</h2>
+        <p>
+          We focus on a small set of high-impact capabilities: workflow automation, compliance automation,
+          analytics, and custom platforms around your existing tools and data.
+        </p>
+      </div>
+      <div class="cards-grid">
+        <article class="card">
+          <h3>Intelligent workflow automation</h3>
+          <p>
+            Design and orchestrate workflows that span engineering, operations, and compliance. Reduce
+            manual work, clarify ownership, and make processes observable end-to-end.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Compliance automation</h3>
+          <p>
+            Bring SOC 2, HIPAA, and internal controls into your day-to-day operations. Automate evidence
+            collection, control checks, and reporting so audits become predictable instead of disruptive.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Custom platforms & integrations</h3>
+          <p>
+            Build a cohesive platform that connects your existing tools, identity, and data. We design and
+            implement event-driven, cloud-native architectures tailored to your environment.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Services</div>
+      <div class="section-header">
+        <h2>How we work with you</h2>
+        <p>
+          We can engage at different levels—from architectural guidance to full implementation—depending
+          on where you are in your modernization journey.
+        </p>
+      </div>
+      <div class="cards-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+        <article class="card">
+          <h3>Architecture & implementation advisory</h3>
+          <p>
+            Validate and refine your target architecture, choose the right building blocks, and plan the
+            roadmap from current state to future system.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Delivery & enablement</h3>
+          <p>
+            Partner on implementation, then enable your internal teams with documentation, patterns, and
+            training so they can own and extend the platform.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Next step</div>
+      <div class="section-header">
+        <h2>Ready to explore a fit?</h2>
+        <p>
+          Share a bit about your current stack and goals, and we’ll propose an initial path that matches
+          your constraints and appetite for change.
+        </p>
+      </div>
+      <a href="/index.html#contact" class="btn btn-primary">Talk to us</a>
+    </section>
+  </main>
+  <footer>
+    <div>© <span id="year"></span> Agnis Labs. All rights reserved.</div>
+    <div>Based in Hoffman Estates, IL • Serving healthcare, finance & regulated enterprises.</div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    var toggleBtn = document.getElementById('contact-toggle');
+    var formWrap = document.getElementById('contact-form-wrap');
+    if (toggleBtn && formWrap) {{
+      toggleBtn.addEventListener('click', function(e) {{
+        e.preventDefault();
+        formWrap.classList.toggle('open');
+        toggleBtn.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+      }});
+    }}
+  </script>
+</body>
+</html>
