@@ -583,16 +583,153 @@
       }
     }
 	  /* Hide Calendly floating badge but keep functionality */
-.calendly-badge-widget {
-  display: none !important;
-}
+  .calendly-badge-widget {
+    display: none !important;
+  }
+
+  /* ── STATS + BANNER STRIP ── */
+  .strip-wrap {
+    margin-top: 28px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(53,224,255,0.12);
+  }
+
+  .stats-bar {
+    display: flex;
+    background: #070c18;
+    border-bottom: 1px solid rgba(53,224,255,0.1);
+  }
+
+  .stats-bar .stat {
+    flex: 1;
+    padding: 14px 8px;
+    text-align: center;
+    border-right: 1px solid rgba(53,224,255,0.07);
+  }
+
+  .stats-bar .stat:last-child { border-right: none; }
+
+  .stats-bar .stat .v {
+    display: block;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #35e0ff;
+  }
+
+  .stats-bar .stat .l {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a6a8a;
+    margin-top: 3px;
+  }
+
+  .vis-banner {
+    position: relative;
+    width: 100%;
+    height: 90px;
+  }
+
+  .vis-banner svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .vis-banner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 28px;
+    gap: 10px;
+  }
+
+  .vis-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(5,8,20,0.75);
+    border: 1px solid rgba(53,224,255,0.35);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #35e0ff;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .vis-pill.vis-pill-purple {
+    border-color: rgba(122,92,255,0.4);
+    color: #b4a0f0;
+  }
+
+  .vis-pill.vis-pill-pink {
+    border-color: rgba(255,107,157,0.4);
+    color: #ffaacb;
+  }
+
+  .vis-pill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #35e0ff;
+    flex-shrink: 0;
+  }
+
+  .vis-pill-dot.vis-pill-dot-purple { background: #7a5cff; }
+  .vis-pill-dot.vis-pill-dot-pink { background: #ff6b9d; }
+
+  .research-banner {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    border: 1px solid rgba(122,92,255,0.15);
+  }
+
+  .research-banner svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .research-banner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 4px 20px;
+  }
+
+  @media (max-width: 880px) {
+    .stats-bar { flex-wrap: wrap; }
+    .stats-bar .stat { flex: 1 1 33%; border-right: 1px solid rgba(53,224,255,0.07); }
+    .vis-banner { height: 70px; }
+    .vis-pill { font-size: 0.6rem; padding: 4px 9px; }
+    .vis-banner-overlay { gap: 6px; padding: 4px 12px; }
+  }
+
+  @media (max-width: 600px) {
+    .vis-banner { display: none; }
+    .stats-bar .stat { flex: 1 1 50%; }
+  }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
       <div class="nav-left">
-        <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+        <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
           <!-- TODO: Paste agnis-labs-mark.svg <svg>...</svg> here -->
 		  <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -768,37 +905,71 @@
               <span>Reusable patterns for audits, incidents, and onboarding.</span>
             </div>
           </div>
-          <div class="core-footer">
-            <span>Designed for technical, security, and compliance teams.</span>
-            <span class="core-signal">
-              <span class="core-signal-bars">
-                <span class="core-signal-bar"></span>
-                <span class="core-signal-bar"></span>
-                <span class="core-signal-bar"></span>
-              </span>
-              <span>System health: Stable</span>
-            </span>
-          </div>
+
         </div>
       </div>
     </section>
 
-    <section id="industries">
-      <div class="section-label">Who we serve</div>
-      <div class="section-header">
-        <h2>Built for regulated, mission-critical environments</h2>
-        <p>
-          We partner with organizations that operate under strict regulatory and operational
-          demands—where reliability, auditability, and security are non-negotiable.
-        </p>
+    <!-- ══ STATS BAR + BANNER STRIP ══ -->
+    <div class="strip-wrap">
+      <div class="stats-bar">
+        <div class="stat"><span class="v">SOC 2</span><span class="l">Compliance Ready</span></div>
+        <div class="stat"><span class="v">HIPAA</span><span class="l">Healthcare Aligned</span></div>
+        <div class="stat"><span class="v">AWS · Azure</span><span class="l">Cloud Native</span></div>
+        <div class="stat"><span class="v">AI-First</span><span class="l">Architecture</span></div>
+        <div class="stat"><span class="v">70%</span><span class="l">Less Compliance Overhead</span></div>
+        <div class="stat"><span class="v">6</span><span class="l">Service Offerings</span></div>
       </div>
-      <div class="pill-row">
-        <span class="pill">Healthcare providers & payers</span>
-        <span class="pill">Healthcare SaaS & digital health</span>
-        <span class="pill">Financial services & fintech</span>
-        <span class="pill">Security & compliance-driven enterprises</span>
+      <div class="vis-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 90" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="vbg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#060c1e"/>
+              <stop offset="100%" style="stop-color:#0a1628"/>
+            </linearGradient>
+            <linearGradient id="vsweep" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   style="stop-color:#35e0ff;stop-opacity:0.0"/>
+              <stop offset="35%"  style="stop-color:#35e0ff;stop-opacity:0.1"/>
+              <stop offset="65%"  style="stop-color:#1a5fff;stop-opacity:0.08"/>
+              <stop offset="100%" style="stop-color:#7a5cff;stop-opacity:0.0"/>
+            </linearGradient>
+          </defs>
+          <rect width="1120" height="90" fill="url(#vbg)"/>
+          <line x1="0" y1="18"  x2="1120" y2="18"  stroke="#35e0ff" stroke-opacity="0.05" stroke-width="1"/>
+          <line x1="0" y1="45"  x2="1120" y2="45"  stroke="#35e0ff" stroke-opacity="0.07" stroke-width="1"/>
+          <line x1="0" y1="72"  x2="1120" y2="72"  stroke="#35e0ff" stroke-opacity="0.05" stroke-width="1"/>
+          <line x1="160" y1="0" x2="160" y2="90" stroke="#35e0ff" stroke-opacity="0.04" stroke-width="1"/>
+          <line x1="320" y1="0" x2="320" y2="90" stroke="#35e0ff" stroke-opacity="0.04" stroke-width="1"/>
+          <line x1="480" y1="0" x2="480" y2="90" stroke="#35e0ff" stroke-opacity="0.04" stroke-width="1"/>
+          <line x1="640" y1="0" x2="640" y2="90" stroke="#35e0ff" stroke-opacity="0.04" stroke-width="1"/>
+          <line x1="800" y1="0" x2="800" y2="90" stroke="#35e0ff" stroke-opacity="0.04" stroke-width="1"/>
+          <line x1="960" y1="0" x2="960" y2="90" stroke="#35e0ff" stroke-opacity="0.04" stroke-width="1"/>
+          <polyline points="0,45 100,45 100,25 250,25 250,65 450,65 450,25 640,25 640,55 780,55 780,25 950,25 950,65 1120,65" fill="none" stroke="#35e0ff" stroke-width="1.2" stroke-opacity="0.22"/>
+          <polyline points="0,70 80,70 80,35 210,35 210,55 400,55 400,20 580,20 580,70 760,70 760,40 920,40 920,70 1120,70" fill="none" stroke="#1a5fff" stroke-width="0.8" stroke-opacity="0.15"/>
+          <polyline points="0,20 150,20 150,55 340,55 340,20 540,20 540,60 730,60 730,20 900,20 900,50 1120,50" fill="none" stroke="#7a5cff" stroke-width="0.8" stroke-opacity="0.12"/>
+          <circle cx="100" cy="25" r="2.5" fill="#35e0ff" opacity="0.55"/>
+          <circle cx="250" cy="65" r="2.5" fill="#35e0ff" opacity="0.55"/>
+          <circle cx="450" cy="25" r="2.5" fill="#35e0ff" opacity="0.55"/>
+          <circle cx="640" cy="55" r="2.5" fill="#1a5fff" opacity="0.55"/>
+          <circle cx="780" cy="25" r="2.5" fill="#1a5fff" opacity="0.55"/>
+          <circle cx="950" cy="65" r="2.5" fill="#7a5cff" opacity="0.55"/>
+          <circle cx="450" cy="25" r="7"   fill="#35e0ff" opacity="0.12"/>
+          <circle cx="640" cy="55" r="7"   fill="#1a5fff" opacity="0.12"/>
+          <rect x="440" y="16" width="20" height="4" rx="2" fill="#35e0ff" opacity="0.25"/>
+          <rect x="630" y="46" width="20" height="4" rx="2" fill="#1a5fff" opacity="0.25"/>
+          <rect x="0" y="0" width="1120" height="90" fill="url(#vsweep)"/>
+          <line x1="0" y1="89" x2="1120" y2="89" stroke="#35e0ff" stroke-opacity="0.18" stroke-width="1"/>
+        </svg>
+        <div class="vis-banner-overlay">
+          <span class="vis-pill"><span class="vis-pill-dot"></span>Automated Workflows</span>
+          <span class="vis-pill"><span class="vis-pill-dot"></span>SOC 2 · HIPAA Controls</span>
+          <span class="vis-pill vis-pill-purple"><span class="vis-pill-dot vis-pill-dot-purple"></span>Real-Time Compliance</span>
+          <span class="vis-pill vis-pill-purple"><span class="vis-pill-dot vis-pill-dot-purple"></span>Evidence Collection</span>
+          <span class="vis-pill"><span class="vis-pill-dot"></span>Audit-Ready Reporting</span>
+        </div>
       </div>
-    </section>
+    </div>
+    <!-- ══ END STRIP ══ -->
 
     <section id="solutions">
       <div class="section-label">Solutions</div>
@@ -902,6 +1073,23 @@
       </div>
     </section>
 
+    <section id="industries">
+      <div class="section-label">Who we serve</div>
+      <div class="section-header">
+        <h2>Built for regulated, mission-critical environments</h2>
+        <p>
+          We partner with organizations that operate under strict regulatory and operational
+          demands—where reliability, auditability, and security are non-negotiable.
+        </p>
+      </div>
+      <div class="pill-row">
+        <span class="pill">Healthcare providers & payers</span>
+        <span class="pill">Healthcare SaaS & digital health</span>
+        <span class="pill">Financial services & fintech</span>
+        <span class="pill">Security & compliance-driven enterprises</span>
+      </div>
+    </section>
+
     <section id="research">
       <div class="section-label">Research & future</div>
       <div class="section-header">
@@ -911,6 +1099,49 @@
           biology, neurotechnology, and advanced propulsion.
         </p>
       </div>
+
+      <!-- Research neural banner -->
+      <div class="research-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 70" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="rbg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#080a1a"/>
+              <stop offset="100%" style="stop-color:#0d0f22"/>
+            </linearGradient>
+            <linearGradient id="rsweep" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   style="stop-color:#7a5cff;stop-opacity:0.0"/>
+              <stop offset="50%"  style="stop-color:#ff6b9d;stop-opacity:0.12"/>
+              <stop offset="100%" style="stop-color:#7a5cff;stop-opacity:0.0"/>
+            </linearGradient>
+          </defs>
+          <rect width="1120" height="70" fill="url(#rbg)"/>
+          <!-- Grid -->
+          <line x1="0"    y1="35" x2="1120" y2="35"  stroke="#7a5cff" stroke-opacity="0.08" stroke-width="1"/>
+          <line x1="280"  y1="0"  x2="280"  y2="70"  stroke="#7a5cff" stroke-opacity="0.05" stroke-width="1"/>
+          <line x1="560"  y1="0"  x2="560"  y2="70"  stroke="#7a5cff" stroke-opacity="0.05" stroke-width="1"/>
+          <line x1="840"  y1="0"  x2="840"  y2="70"  stroke="#7a5cff" stroke-opacity="0.05" stroke-width="1"/>
+          <!-- Neural paths -->
+          <polyline points="0,35 100,35 140,15 250,55 340,20 460,50 560,15 690,45 820,20 940,50 1120,30"
+            fill="none" stroke="#7a5cff" stroke-width="1.2" stroke-opacity="0.3"/>
+          <polyline points="0,50 160,50 230,25 360,55 480,25 630,55 760,25 900,55 1120,45"
+            fill="none" stroke="#ff6b9d" stroke-width="0.8" stroke-opacity="0.2"/>
+          <!-- Synapse nodes -->
+          <circle cx="140"  cy="15" r="3" fill="#7a5cff" opacity="0.7"/>
+          <circle cx="140"  cy="15" r="7" fill="#7a5cff" opacity="0.15"/>
+          <circle cx="460"  cy="50" r="3" fill="#ff6b9d" opacity="0.7"/>
+          <circle cx="460"  cy="50" r="7" fill="#ff6b9d" opacity="0.15"/>
+          <circle cx="820"  cy="20" r="3" fill="#7a5cff" opacity="0.7"/>
+          <circle cx="820"  cy="20" r="7" fill="#7a5cff" opacity="0.15"/>
+          <rect x="0" y="0" width="1120" height="70" fill="url(#rsweep)"/>
+          <line x1="0" y1="69" x2="1120" y2="69" stroke="#7a5cff" stroke-opacity="0.2" stroke-width="1"/>
+        </svg>
+        <div class="research-banner-overlay">
+          <span class="vis-pill vis-pill-purple"><span class="vis-pill-dot vis-pill-dot-purple"></span>BCI &amp; Neural Interfaces</span>
+          <span class="vis-pill vis-pill-pink"><span class="vis-pill-dot vis-pill-dot-pink"></span>Advanced Propulsion</span>
+          <span class="vis-pill vis-pill-purple"><span class="vis-pill-dot vis-pill-dot-purple"></span>Bio-Inspired Systems</span>
+        </div>
+      </div>
+
       <div class="two-col">
         <div class="panel">
           <strong>Human–machine interfaces & bio-systems</strong>
