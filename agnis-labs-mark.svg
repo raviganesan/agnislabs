@@ -1,0 +1,86 @@
+<svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .ring-spin {
+        transform-origin: 60px 60px;
+        animation: rotateFwd 18s linear infinite;
+      }
+      .ring-spin-rev {
+        transform-origin: 60px 60px;
+        animation: rotateRev 12s linear infinite;
+      }
+      .pulse-core {
+        animation: pulseGlow 3s ease-in-out infinite;
+      }
+      @keyframes rotateFwd {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes rotateRev {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(-360deg); }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.9; }
+        50%       { opacity: 1; filter: drop-shadow(0 0 8px #00d4ff); }
+      }
+    </style>
+  </defs>
+
+  <!-- Background (transparent by default — remove rect to keep it transparent) -->
+  <!-- <rect width="120" height="120" fill="#03060f"/> -->
+
+  <!-- Outer orbit ring -->
+  <g class="ring-spin">
+    <circle cx="60" cy="60" r="52" fill="none" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="4 8"/>
+    <circle cx="60" cy="8"  r="2.5" fill="#00d4ff" opacity="0.7"/>
+    <circle cx="112" cy="60" r="2"  fill="#0099ff" opacity="0.5"/>
+    <circle cx="8"  cy="60" r="1.5" fill="#00d4ff" opacity="0.4"/>
+  </g>
+
+  <!-- Mid orbit ring (reverse) -->
+  <g class="ring-spin-rev">
+    <circle cx="60" cy="60" r="38" fill="none" stroke="#0088ff" stroke-width="0.75" stroke-opacity="0.35" stroke-dasharray="2 12"/>
+    <circle cx="60" cy="22" r="2"   fill="#0088ff" opacity="0.6"/>
+    <circle cx="98" cy="60" r="1.5" fill="#00ccff" opacity="0.5"/>
+  </g>
+
+  <!-- Outer hexagon frame -->
+  <polygon points="60,18 96,39 96,81 60,102 24,81 24,39"
+    fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-opacity="0.25"/>
+
+  <!-- Inner hexagon -->
+  <polygon points="60,28 88,44 88,76 60,92 32,76 32,44"
+    fill="none" stroke="#0099ff" stroke-width="0.5" stroke-opacity="0.2"/>
+
+  <!-- Core delta mark -->
+  <g filter="url(#glow2)" class="pulse-core">
+    <!-- Outer upward triangle -->
+    <polygon points="60,26 90,74 30,74"
+      fill="none" stroke="#00d4ff" stroke-width="1.8" stroke-linejoin="round" stroke-opacity="0.9"/>
+    <!-- Inner inverted triangle -->
+    <polygon points="60,58 74,34 46,34"
+      fill="rgba(0,180,255,0.08)" stroke="#00aaff" stroke-width="1" stroke-linejoin="round" stroke-opacity="0.7"/>
+    <!-- Center synapse node -->
+    <circle cx="60" cy="50" r="4" fill="#00d4ff" opacity="0.95" filter="url(#glow)"/>
+    <circle cx="60" cy="50" r="2" fill="#fff" opacity="0.9"/>
+    <!-- Emanating signal lines -->
+    <line x1="60" y1="46" x2="60" y2="30" stroke="#00d4ff" stroke-width="0.8" stroke-opacity="0.5"/>
+    <line x1="60" y1="54" x2="46" y2="70" stroke="#00d4ff" stroke-width="0.8" stroke-opacity="0.5"/>
+    <line x1="60" y1="54" x2="74" y2="70" stroke="#00d4ff" stroke-width="0.8" stroke-opacity="0.5"/>
+  </g>
+
+  <!-- Workflow baseline -->
+  <line x1="36" y1="80" x2="84" y2="80" stroke="#0077cc" stroke-width="0.8" stroke-opacity="0.5"/>
+  <circle cx="36" cy="80" r="1.5" fill="#0077cc" opacity="0.6"/>
+  <circle cx="60" cy="80" r="1.5" fill="#00aaff" opacity="0.6"/>
+  <circle cx="84" cy="80" r="1.5" fill="#0077cc" opacity="0.6"/>
+</svg>
