@@ -582,6 +582,10 @@
         grid-template-columns: 1fr;
       }
     }
+	  /* Hide Calendly floating badge but keep functionality */
+.calendly-badge-widget {
+  display: none !important;
+}
   </style>
 </head>
 <body>
@@ -624,6 +628,10 @@
         0%, 100% { opacity: 0.9; }
         50%       { opacity: 1; filter: drop-shadow(0 0 8px #00d4ff); }
       }
+	  /* Hide Calendly floating badge but keep functionality */
+      .calendly-badge-widget {
+        display: none !important;
+      }		
     </style>
   </defs>
 
@@ -692,7 +700,7 @@
       </nav>
       <div class="nav-cta">
        <a href="agnis-labs-overview-v1.pdf" class="btn btn-ghost" download>Download Overview</a>
-       <a href="#" class="btn btn-primary calendly-popup" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/agnislabs-zohomail/group-meeting'}); return false;">Schedule a Call</a>
+       <a href="#" class="btn btn-primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/agnislabs-zohomail/new-meeting'}); return false;">Schedule a call</a>
       </div>
     </div>
   </header>
@@ -714,8 +722,12 @@
         </p>
         <div class="hero-actions">
         <!-- <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Talk to us</button> -->
-		<a href="#" class="btn btn-primary calendly-popup" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/agnislabs-zohomail/30min'}); return false;">Talk to us</a>
-
+		<a href="#" class="btn btn-primary" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/agnislabs-zohomail/30min'}); return false;"> Talk to us</a>
+        <!-- Calendly badge widget begin -->
+		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+		<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/agnislabs-zohomail/30min', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: false }); }</script>
+		<!-- Calendly badge widget end -->
         <button class="btn btn-ghost" type="button">Explore solutions</button>
         </div>
         <div class="hero-meta">
