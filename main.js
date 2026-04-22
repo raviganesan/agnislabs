@@ -1,3 +1,13 @@
+window.onload = function() {
+      Calendly.initBadgeWidget({
+        url: 'https://calendly.com/agnislabs-zohomail/30min',
+        text: 'Schedule time with me',
+        color: '#0069ff',
+        textColor: '#ffffff',
+        branding: false
+      });
+    };
+    
 document.addEventListener('DOMContentLoaded', () => {
   // Set footer year
   const yearSpan = document.getElementById('year');
