@@ -947,41 +947,49 @@
       </div>
     </section>
 
-    <section id="contact" class="contact">
-      <div>
-        <div class="section-label">Contact</div>
-        <h2>Let’s talk about your workflows and compliance</h2>
-        <p>
-          Whether you are modernizing legacy workflows, preparing for an audit, or exploring research
-          collaboration, we’d be glad to learn more.
-        </p>
-      </div>
-      <form class="contact-form">
-        <div>
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" placeholder="Your name" />
-        </div>
-        <div>
-          <label for="email">Work email</label>
-          <input id="email" name="email" type="email" placeholder="you@company.com" />
-        </div>
-        <div>
-          <label for="org">Organization</label>
-          <input id="org" name="org" type="text" placeholder="Company or team" />
-        </div>
-        <div>
-          <label for="role">Role</label>
-          <input id="role" name="role" type="text" placeholder="Your role" />
-        </div>
-        <div class="field-full">
-          <label for="message">How can we help?</label>
-          <textarea id="message" name="message" placeholder="Briefly describe your current challenges or goals."></textarea>
-        </div>
-        <div class="field-full submit-row">
-          <button class="btn btn-primary" type="submit">Submit</button>
-        </div>
-      </form>
-    </section>
+ <section id="contact" class="contact">
+  <div>
+    <div class="section-label">Contact</div>
+    <h2>Let's talk about your workflows and compliance</h2>
+    <p>Whether you are modernizing legacy workflows, preparing for an audit, or exploring research collaboration, we'd be glad to learn more.</p>
+  </div>
+  
+  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="5a0c171e-7c5d-408f-bbe5-22d12118fea0">
+    <input type="hidden" name="_honey" style="display: none !important; min-height: 0; max-height: 0; opacity: 0; overflow: hidden; position: absolute;">
+    <input type="hidden" name="subject" value="New Contact from Agnis Labs Website">
+    
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Your name" required>
+    </div>
+    
+    <div>
+      <label for="email">Work email</label>
+      <input id="email" name="email" type="email" placeholder="you@company.com" required>
+    </div>
+    
+    <div>
+      <label for="org">Organization</label>
+      <input id="org" name="org" type="text" placeholder="Company or team">
+    </div>
+    
+    <div>
+      <label for="role">Role</label>
+      <input id="role" name="role" type="text" placeholder="Your role">
+    </div>
+    
+    <div class="field-full">
+      <label for="message">How can we help?</label>
+      <textarea id="message" name="message" placeholder="Briefly describe your current challenges or goals." required></textarea>
+    </div>
+    
+    <div class="field-full submit-row">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</section>
+
   </main>
 
   <footer>
