@@ -692,7 +692,7 @@
       </nav>
       <div class="nav-cta">
        <a href="agnis-labs-overview-v1.pdf" class="btn btn-ghost" download>Download Overview</a>
-       <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Schedule a Call</button>
+       <a href="#" class="btn btn-primary calendly-popup" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/agnislabs-zohomail/group-meeting'}); return false;">Schedule a Call</a>
       </div>
     </div>
   </header>
@@ -713,7 +713,9 @@
           decision-making for healthcare, finance, and other high-stakes environments.
         </p>
         <div class="hero-actions">
-        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Talk to us</button>
+        <!-- <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Talk to us</button> -->
+		<a href="#" class="btn btn-primary calendly-popup" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/agnislabs-zohomail/30min'}); return false;">Talk to us</a>
+
         <button class="btn btn-ghost" type="button">Explore solutions</button>
         </div>
         <div class="hero-meta">
@@ -998,7 +1000,8 @@
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();	
   </script>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
